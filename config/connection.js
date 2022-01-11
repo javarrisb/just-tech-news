@@ -1,3 +1,4 @@
+// import the Sequilize constructor from the library
 const Sequelize = require('sequelize');
 
 require('dotenv').config();

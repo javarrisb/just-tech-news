@@ -2,15 +2,20 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // create our User model
-class User extends Model {}
+class User extends Model { }
 
 // create fields/columns for User model
 User.init(
   {
+    // define an id column
     id: {
+      // use the special Sequlize DataTypes object provide what type of data it is
       type: DataTypes.INTEGER,
+      // this is the equivalent of SQL's `NOT NULL` option
       allowNull: false,
+      // instruct that this is the Primary key
       primaryKey: true,
+      // turn on auto increment 
       autoIncrement: true
     },
     username: {
@@ -18,17 +23,22 @@ User.init(
       allowNull: false
     },
     email: {
+      // define an email column
       type: DataTypes.STRING,
       allowNull: false,
+      // there cannot be any duplicate email values in this table
       unique: true,
+      // if allowNull is set to false, we can run our data through validators before creating the table data
       validate: {
         isEmail: true
       }
     },
     password: {
+      // define a password column
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        // this means the password must be at least four characters long
         len: [4]
       }
     }
